@@ -23,6 +23,7 @@ app.delete("/api/courses/:id", controller.deleteCourse);
 
 app.get("/api/users", userController.getAllusers);
 app.post("/api/register", userController.register);
+app.post("/api/login", userController.login);
 //app.use((req, res) => {
 //res.status(404).json({ msg: "Route not found" });
 //});
