@@ -22,7 +22,7 @@ app.patch("/api/courses/:id", controller.updateCourse);
 app.delete("/api/courses/:id", controller.deleteCourse);
 
 app.get("/api/users", userController.getAllusers);
-app.post("/api/users", userController.addNewUser);
+app.post("/api/register", userController.register);
 //app.use((req, res) => {
 //res.status(404).json({ msg: "Route not found" });
 //});

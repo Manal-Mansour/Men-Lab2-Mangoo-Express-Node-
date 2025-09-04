@@ -7,10 +7,18 @@ const getAllusers = async (requestAnimationFrame, res) => {
   res.json({ Status: UTILITIES.SUCESS, Data: users });
 };
 
-const addNewUser = async (req, res) => {
-  const newUser = new User(req.body);
-  newUser.save();
-  res.json({ Status: UTILITIES.SUCESS, Data: newUser });
+const register = async (req, res) => {
+  try {
+    const oldUser = await User.findOne({ email: req.body.email });
+    if (oldUser) {
+      return res.json({ MSG: "User is already exist " });
+    }
+    const newUser = new User(req.body);
+    await newUser.save();
+    return res.json({ Status: UTILITIES.SUCESS, Data: newUser });
+  } catch (e) {
+    return res.json(e.message);
+  }
 };
 
-module.exports = { getAllusers, addNewUser };
+module.exports = { getAllusers, register };
